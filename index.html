@@ -1,41 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cheguyna Livre - Bibliothèque PDF</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheguyna Livre - Bibliothèque Médicale</title>
 <style>
-body{margin:0;background:#071530;color:#fff;font-family:Arial;text-align:center}
-h1{color:#facc15;padding:30px 20px 10px}
-.grid{display:grid;grid-template-columns:1fr;gap:16px;padding:20px;max-width:700px;margin:auto}
-.card{background:#fff1;padding:18px;border-radius:14px;border:1px solid #ffffff22;text-align:left}
-.card a{color:#facc15;font-weight:bold;text-decoration:none;font-size:18px}
-.card p{opacity:0.7;font-size:13px;margin:8px 0 0}
-.viewer{width:100%;height:80vh;border:none;border-radius:12px;background:#000;margin-top:20px}
+body{font-family:sans-serif;background:#0f172a;color:white;margin:0;padding:20px}
+h1{text-align:center;color:#38bdf8}
+.search{width:100%;padding:12px;border-radius:10px;border:none;margin:15px 0;font-size:16px}
+.card{background:#1e293b;padding:15px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.card a{color:#38bdf8;text-decoration:none;font-weight:bold}
+.btn{background:#38bdf8;color:#0f172a;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold}
+.grid{display:grid;gap:12px}
 </style>
 </head>
 <body>
-<h1>📚 Cheguyna<br>Laboratoire d'Analyses Médicales</h1>
-<p>Bibliothèque PDF Officielle - RDC</p>
+<h1>📚 Cheguyna Livre</h1>
+<p style="text-align:center">Bibliothèque médicale gratuite</p>
+<input type="text" id="search" class="search" placeholder="🔍 Rechercher un livre..." onkeyup="filtrer()">
 
-<div class="grid">
-  <div class="card">
-    <a href="Cheguyna-Livre.pdf" target="_blank">📄 Ouvrir le Livre Complet - PDF</a>
-    <p>Clique pour lire ou télécharger - 300+ pages</p>
-  </div>
-  
-  <div class="card">
-    <a href="Protocole-Prelevement.pdf" target="_blank">📄 Protocole Prélèvement</a>
-    <p>Guide pratique PDF</p>
-  </div>
-
-  <div class="card">
-    <a href="Biochimie.pdf" target="_blank">📄 Biochimie</a>
-    <p>Cours complet</p>
-  </div>
+<div class="grid" id="liste">
+<div class="card"><a href="9242544256_fre.pdf" target="_blank">📖 9242544256_fre.pdf</a><a class="btn" href="9242544256_fre.pdf" target="_blank">Lire</a></div>
+<div class="card"><a href="9789240025868-fre.pdf" target="_blank">📖 9789240025868-fre.pdf</a><a class="btn" href="9789240025868-fre.pdf" target="_blank">Lire</a></div>
+<div class="card"><a href="9789242547825_fre.pdf" target="_blank">📖 9789242547825_fre.pdf</a><a class="btn" href="9789242547825_fre.pdf" target="_blank">Lire</a></div>
+<div class="card"><a href="9789242548273_fre.pdf" target="_blank">📖 9789242548273_fre.pdf</a><a class="btn" href="9789242548273_fre.pdf" target="_blank">Lire</a></div>
+<div class="card"><a href="SAN438-Cours-de-Techniques-de-Soins.pdf" target="_blank">📖 SAN438 - Techniques de Soins</a><a class="btn" href="SAN438-Cours-de-Techniques-de-Soins.pdf" target="_blank">Lire</a></div>
+<div class="card"><a href="atlas-de-poche-d-hematologie.pdf" target="_blank">📖 Atlas de poche d'Hématologie</a><a class="btn" href="atlas-de-poche-d-hematologie.pdf" target="_blank">Lire</a></div>
 </div>
 
-<p style="opacity:0.5;font-size:12px;margin:40px">© 2026 Cheguyna • Kinshasa<br>Ajoute tes PDF et change les noms ci-dessus</p>
+<script>
+function filtrer(){
+ let q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(c=>{
+  c.style.display=c.innerText.toLowerCase().includes(q)?"flex":"none"
+ })
+}
+</script>
+
+<p style="text-align:center;margin-top:30px;opacity:0.6">© 2026 Cheguyna Livre - Kinshasa</p>
 </body>
 </html>
