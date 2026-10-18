@@ -1,0 +1,9 @@
+{
+  "name": "Cheguyna Livre",
+  "short_name": "Cheguyna",
+  "start_url": "/Cheguyna-Livre/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [{"src": "https://cdn-icons-png.flaticon.com/512/29/29302.png","sizes": "512x512","type": "image/png"}]
+}
