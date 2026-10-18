@@ -3,40 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheguyna Livre - Bibliothèque Médicale</title>
+<title>Mes Syllabus</title>
+<link rel="manifest" href="manifest.json">
 <style>
-body{font-family:sans-serif;background:#0f172a;color:white;margin:0;padding:20px}
-h1{text-align:center;color:#38bdf8}
-.search{width:100%;padding:12px;border-radius:10px;border:none;margin:15px 0;font-size:16px}
-.card{background:#1e293b;padding:15px;border-radius:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-.card a{color:#38bdf8;text-decoration:none;font-weight:bold}
-.btn{background:#38bdf8;color:#0f172a;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold}
-.grid{display:grid;gap:12px}
+body{font-family:sans-serif;background:#0f172a;color:#fff;padding:15px}
+h1{text-align:center;color:#38bdf8;margin:10px}
+.box{background:#1e293b;padding:15px;border-radius:10px}
+input,textarea{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:0;background:#020617;color:#fff}
+button{width:100%;padding:12px;background:#38bdf8;border:0;border-radius:8px;font-weight:bold}
+.card{background:#fff;color:#000;padding:12px;border-radius:10px;margin-top:10px;display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
-<h1>📚 Cheguyna Livre</h1>
-<p style="text-align:center">Bibliothèque médicale gratuite</p>
-<input type="text" id="search" class="search" placeholder="🔍 Rechercher un livre..." onkeyup="filtrer()">
-
-<div class="grid" id="liste">
-<div class="card"><a href="9242544256_fre.pdf" target="_blank">📖 9242544256_fre.pdf</a><a class="btn" href="9242544256_fre.pdf" target="_blank">Lire</a></div>
-<div class="card"><a href="9789240025868-fre.pdf" target="_blank">📖 9789240025868-fre.pdf</a><a class="btn" href="9789240025868-fre.pdf" target="_blank">Lire</a></div>
-<div class="card"><a href="9789242547825_fre.pdf" target="_blank">📖 9789242547825_fre.pdf</a><a class="btn" href="9789242547825_fre.pdf" target="_blank">Lire</a></div>
-<div class="card"><a href="9789242548273_fre.pdf" target="_blank">📖 9789242548273_fre.pdf</a><a class="btn" href="9789242548273_fre.pdf" target="_blank">Lire</a></div>
-<div class="card"><a href="SAN438-Cours-de-Techniques-de-Soins.pdf" target="_blank">📖 SAN438 - Techniques de Soins</a><a class="btn" href="SAN438-Cours-de-Techniques-de-Soins.pdf" target="_blank">Lire</a></div>
-<div class="card"><a href="atlas-de-poche-d-hematologie.pdf" target="_blank">📖 Atlas de poche d'Hématologie</a><a class="btn" href="atlas-de-poche-d-hematologie.pdf" target="_blank">Lire</a></div>
+<h1>📚 Mes Syllabus</h1>
+<div class="box">
+<input id="t" placeholder="Titre du syllabus">
+<input id="c" placeholder="Cours / Prof">
+<input id="l" placeholder="Lien Google Drive du PDF">
+<button onclick="add()">ENREGISTRER</button>
 </div>
-
+<input id="s" placeholder="🔍 Rechercher" onkeyup="show()" style="margin-top:15px;background:#1e293b;border:1px solid #38bdf8">
+<div id="list"></div>
 <script>
-function filtrer(){
- let q=document.getElementById("search").value.toLowerCase();
- document.querySelectorAll(".card").forEach(c=>{
-  c.style.display=c.innerText.toLowerCase().includes(q)?"flex":"none"
- })
+let data=JSON.parse(localStorage.getItem('s')||'[]');
+function add(){
+if(!t.value)return alert('Titre!');
+data.unshift({t:t.value,c:c.value,l:l.value,d:Date.now()});
+localStorage.setItem('s',JSON.stringify(data));
+t.value=c.value=l.value='';show();
 }
+function show(){
+let q=s.value.toLowerCase(),h='';
+data.forEach((x,i)=>{
+if(x.t.toLowerCase().includes(q)){
+h+=`<div class="card"><div><b>${x.t}</b><br><small>${x.c}</small></div><div><a href="${x.l}" target="_blank">Ouvrir</a> <button onclick="del(${i})" style="width:auto;background:red;color:#fff;padding:5px 10px">X</button></div></div>`;
+}});
+list.innerHTML=h||'<p style="text-align:center;opacity:.5;margin-top:20px">Aucun syllabus</p>';
+}
+function del(i){data.splice(i,1);localStorage.setItem('s',JSON.stringify(data));show();}
+show();
 </script>
-
-<p style="text-align:center;margin-top:30px;opacity:0.6">© 2026 Cheguyna Livre - Kinshasa</p>
 </body>
 </html>
